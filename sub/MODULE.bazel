@@ -1,0 +1,14 @@
+module(name = "sub")
+bazel_dep(name = "abseil-py", version = "2.1.0")
+bazel_dep(name = "rules_oci", version = "2.2.6")
+bazel_dep(name = "rules_pkg", version = "1.2.0")
+bazel_dep(name = "rules_python", version = "1.7.0")
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "distroless_python3",
+    digest = "sha256:62214ec8dc220b42d244b471c6da1fe8017fdfeb361c8cf8d2ce254cd39def0c",
+    image = "gcr.io/distroless/python3",
+    platforms = ["linux/amd64"],
+)
+use_repo(oci, "distroless_python3")

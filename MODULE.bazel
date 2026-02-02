@@ -1,0 +1,5 @@
+bazel_dep(name = "sub")
+local_path_override(
+  module_name = "sub",
+  path = "./sub",
+)
